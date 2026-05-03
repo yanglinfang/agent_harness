@@ -3,7 +3,6 @@ import { activeRun } from "./data";
 import { WorkspaceRail } from "./components/WorkspaceRail";
 import { AgentHeader } from "./components/AgentHeader";
 import { ModeSwitcher, type ModeOption } from "./components/ModeSwitcher";
-import { CapabilityStrip } from "./components/CapabilityStrip";
 import { ConversationStream } from "./components/ConversationStream";
 import { ActivityDrawer } from "./components/ActivityDrawer";
 import { InspectorPanel } from "./components/InspectorPanel";
@@ -16,19 +15,13 @@ export function App() {
       <WorkspaceRail sources={activeRun.workspace} />
 
       <section className="center">
-        <AgentHeader
-          title={activeRun.title}
-          policy={activeRun.policy}
-          modelRoute={activeRun.modelRoute}
-          mode={mode}
-        />
+        <AgentHeader title={activeRun.title} mode={mode} />
         <ModeSwitcher mode={mode} onSelect={setMode} />
-        <CapabilityStrip capabilities={activeRun.capabilities} />
         <ConversationStream mode={mode} />
         <ActivityDrawer events={activeRun.trace} />
       </section>
 
-      <InspectorPanel />
+      <InspectorPanel run={activeRun} mode={mode} />
     </main>
   );
 }

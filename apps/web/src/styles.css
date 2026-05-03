@@ -30,7 +30,7 @@ button {
 
 .shell {
   display: grid;
-  grid-template-columns: 260px minmax(620px, 1fr) 320px;
+  grid-template-columns: 240px minmax(620px, 1fr) 280px;
   height: 100vh;
   overflow: hidden;
 }
@@ -38,8 +38,7 @@ button {
 .workspace,
 .inspector {
   background: #0b1016;
-  border-color: #1d2835;
-  padding: 16px;
+  padding: 18px 16px;
   overflow: auto;
 }
 
@@ -55,7 +54,7 @@ button {
   display: flex;
   gap: 10px;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .mark {
@@ -70,56 +69,58 @@ button {
 }
 
 small,
-header,
-.route,
 .event span,
 .event em {
   color: #8d9aaa;
 }
 
-section > header {
-  margin: 22px 0 8px;
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0;
-}
-
-.source,
-.repo-card,
-.memory-row,
-.kv {
-  display: flex;
+.rail-item {
+  display: block;
   width: 100%;
-  gap: 10px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 8px;
   text-align: left;
+  padding: 12px;
+  margin-bottom: 10px;
   background: #101720;
   border: 1px solid #1d2835;
   border-radius: 6px;
+  color: #d7dee8;
 }
 
-.source {
-  flex-direction: column;
-  align-items: flex-start;
+.rail-item span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
 }
 
-.repo-card {
-  justify-content: flex-start;
+.rail-item small {
+  display: block;
+  line-height: 1.35;
 }
 
-.status-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #2bc48a;
+.rail-item.optional {
+  background: #0d131b;
+  border-style: dashed;
+  border-color: #243042;
+  cursor: default;
 }
 
-.status-dot.pending {
-  background: #b58a2a;
+.rail-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.rail-item-head span {
+  margin: 0;
+}
+
+.rail-item-head em {
+  font-style: normal;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #8d9aaa;
+  letter-spacing: 0.04em;
 }
 
 .center {
@@ -130,39 +131,17 @@ section > header {
   overflow: hidden;
 }
 
-.topbar,
-.hero,
-.mode-switcher,
-.cap-strip,
-.composer,
-.activity {
-  border-bottom: 1px solid #1d2835;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 16px;
-  color: #9ba8b7;
-}
-
-.kbd {
-  padding: 3px 8px;
-  background: #141c26;
-  border: 1px solid #263241;
-  border-radius: 5px;
-}
-
 .hero {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 24px;
-  padding: 18px 16px;
+  gap: 16px;
+  padding: 18px 20px 12px;
 }
 
 h1 {
-  margin: 0 0 6px;
-  font-size: 24px;
+  margin: 0;
+  font-size: 22px;
   line-height: 1.1;
 }
 
@@ -171,26 +150,22 @@ p {
   line-height: 1.45;
 }
 
-.route {
-  display: grid;
-  gap: 8px;
-  min-width: 210px;
-  align-content: start;
-  text-align: right;
+.mode-tag {
+  font-size: 12px;
+  color: #8d9aaa;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
 }
 
-.mode-switcher,
-.activity-tabs,
-.tabs {
+.mode-switcher {
   display: flex;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: 6px;
+  padding: 0 20px 12px;
 }
 
-.mode-switcher button,
-.activity-tabs button,
-.tabs button {
-  padding: 7px 10px;
+.mode-switcher button {
+  padding: 6px 12px;
+  font-size: 13px;
 }
 
 .active {
@@ -199,32 +174,10 @@ p {
   color: #f3f8ff;
 }
 
-.cap-strip {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 10px;
-  padding: 12px 16px;
-}
-
-.cap {
-  min-height: 70px;
-  padding: 10px;
-  background: #0f1620;
-  border: 1px solid #223246;
-  border-radius: 6px;
-}
-
-.cap span {
-  display: block;
-  margin-bottom: 6px;
-  color: #64a6ff;
-  font-size: 12px;
-}
-
 .conversation {
   flex: 1;
   overflow: auto;
-  padding: 16px;
+  padding: 16px 20px;
 }
 
 .message,
@@ -267,7 +220,8 @@ p {
   display: grid;
   grid-template-columns: 1fr auto auto auto auto;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 12px 20px;
+  border-top: 1px solid #1d2835;
 }
 
 .composer input {
@@ -279,55 +233,65 @@ p {
   padding: 10px;
 }
 
-.activity {
-  height: 230px;
-  overflow: hidden;
-  background: #080c11;
-}
-
-.activity-tabs {
-  padding-bottom: 8px;
-}
-
-.event-list {
-  height: 170px;
-  overflow: auto;
-  padding: 0 16px 12px;
-}
-
-.event {
-  display: grid;
-  grid-template-columns: 72px 86px 1fr 72px;
-  gap: 10px;
+.signals {
+  display: flex;
+  gap: 14px;
   align-items: center;
-  padding: 8px 0;
-  border-top: 1px solid #172231;
-}
-
-.event strong {
-  color: #64a6ff;
+  padding: 8px 20px;
+  border-top: 1px solid #1d2835;
+  background: #080c11;
   font-size: 12px;
+  color: #8d9aaa;
+  min-height: 32px;
 }
 
-.tabs {
-  padding: 0 0 12px;
-  overflow-x: auto;
-}
-
-.tabs button {
-  white-space: nowrap;
-}
-
-.memory-row,
-.kv {
-  font-size: 13px;
-}
-
-.memory-row strong,
-.kv strong {
-  color: #2bc48a;
-}
-
-.memory-row.warn strong {
+.signals-pending {
   color: #d6a63a;
+}
+
+.signals-latest {
+  margin-left: auto;
+  color: #7f8b9a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.run-context-header {
+  margin: 0 0 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8d9aaa;
+}
+
+.run-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+  align-items: baseline;
+}
+
+.run-row span {
+  color: #8d9aaa;
+}
+
+.run-row strong {
+  color: #d7dee8;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.run-row.subtle strong {
+  color: #9ba8b7;
+  font-weight: 400;
+}
+
+.run-divider {
+  margin: 14px 0 8px;
+  border: none;
+  border-top: 1px solid #1d2835;
 }

@@ -4,37 +4,42 @@ interface WorkspaceRailProps {
   sources: WorkspaceSource[];
 }
 
+function summarize(sources: WorkspaceSource[], kinds: WorkspaceSource["kind"][]) {
+  return sources
+    .filter((source) => kinds.includes(source.kind))
+    .map((source) => source.summary)
+    .join(" · ");
+}
+
 export function WorkspaceRail({ sources }: WorkspaceRailProps) {
+  const workspace = summarize(sources, ["files", "docs"]);
+  const appsBrowser = summarize(sources, ["apps", "browser"]);
+  const repo = sources.find((source) => source.kind === "repos");
+
   return (
     <aside className="workspace">
       <div className="brand">
         <span className="mark">A</span>
-        <div>
-          <strong>Agent Harness</strong>
-          <small>local + cloud workspace</small>
-        </div>
+        <strong>Agent Harness</strong>
       </div>
 
-      <section>
-        <header>Workspace</header>
-        {sources.map((source) => (
-          <button className="source" key={source.id}>
-            <span>{source.label}</span>
-            <small>{source.summary}</small>
-          </button>
-        ))}
-      </section>
+      <button type="button" className="rail-item">
+        <span>Workspace</span>
+        <small>{workspace || "No files or docs connected"}</small>
+      </button>
 
-      <section>
-        <header>Coding is optional</header>
-        <div className="repo-card">
-          <span className="status-dot pending" />
-          <div>
-            <strong>Connect a repo</strong>
-            <small>Enable diffs, tests, and review-gated apply.</small>
-          </div>
+      <button type="button" className="rail-item">
+        <span>Apps &amp; Browser</span>
+        <small>{appsBrowser || "No apps or browser connected"}</small>
+      </button>
+
+      <div className="rail-item optional">
+        <div className="rail-item-head">
+          <span>Coding</span>
+          <em>optional</em>
         </div>
-      </section>
+        <small>{repo?.summary ?? "Connect a repo to enable diffs."}</small>
+      </div>
     </aside>
   );
 }

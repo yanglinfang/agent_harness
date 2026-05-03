@@ -1,80 +1,60 @@
-import { useState } from "react";
+import type { AgentRun } from "@agent-harness/protocol";
+import type { ModeOption } from "./ModeSwitcher";
 
-const INSPECTOR_TABS = [
-  "Memory",
-  "Tools",
-  "MCP",
-  "Skills",
-  "Permissions",
-  "Trace",
-] as const;
+interface InspectorPanelProps {
+  run: AgentRun;
+  mode: ModeOption;
+}
 
-type InspectorTab = (typeof INSPECTOR_TABS)[number];
+function summaryFor(run: AgentRun, kind: string) {
+  return run.capabilities.find((capability) => capability.kind === kind)?.summary;
+}
 
-export function InspectorPanel() {
-  const [tab, setTab] = useState<InspectorTab>(INSPECTOR_TABS[0]);
+export function InspectorPanel({ run, mode }: InspectorPanelProps) {
+  const mcp = summaryFor(run, "mcp") ?? "—";
+  const skills = summaryFor(run, "skill") ?? "—";
+  const tools = summaryFor(run, "tool") ?? "—";
+  const pending = run.trace.filter((event) => event.state === "waiting").length;
 
   return (
     <aside className="inspector">
-      <div className="tabs" role="tablist" aria-label="Inspector">
-        {INSPECTOR_TABS.map((option) => (
-          <button
-            key={option}
-            type="button"
-            role="tab"
-            aria-selected={option === tab}
-            className={option === tab ? "active" : ""}
-            onClick={() => setTab(option)}
-          >
-            {option}
-          </button>
-        ))}
+      <header className="run-context-header">Run context</header>
+
+      <div className="run-row">
+        <span>Mode</span>
+        <strong>{mode}</strong>
       </div>
-      <section>
-        <header>Personal</header>
-        <div className="memory-row">
-          <span>Prefers concise summaries</span>
-          <strong>live</strong>
-        </div>
-        <div className="memory-row">
-          <span>Timezone: America/Los_Angeles</span>
-          <strong>live</strong>
-        </div>
-        <div className="memory-row">
-          <span>Work focus: AI infra</span>
-          <strong>live</strong>
-        </div>
-      </section>
-      <section>
-        <header>Project</header>
-        <div className="memory-row">
-          <span>Customer research synthesis</span>
-          <strong>session</strong>
-        </div>
-        <div className="memory-row warn">
-          <span>Complaint themes draft</span>
-          <strong>ask</strong>
-        </div>
-      </section>
-      <section>
-        <header>Framework</header>
-        <div className="kv">
-          <span>MCP</span>
-          <strong>5 connected</strong>
-        </div>
-        <div className="kv">
-          <span>Skills</span>
-          <strong>4 active</strong>
-        </div>
-        <div className="kv">
-          <span>Permissions</span>
-          <strong>8 rules</strong>
-        </div>
-        <div className="kv">
-          <span>Trace</span>
-          <strong>sealed</strong>
-        </div>
-      </section>
+      <div className="run-row">
+        <span>Policy</span>
+        <strong>{run.policy}</strong>
+      </div>
+      <div className="run-row">
+        <span>Route</span>
+        <strong>{run.modelRoute}</strong>
+      </div>
+      <div className="run-row">
+        <span>Memory</span>
+        <strong>personal · project · session</strong>
+      </div>
+
+      <hr className="run-divider" />
+
+      <div className="run-row subtle">
+        <span>MCP</span>
+        <strong>{mcp}</strong>
+      </div>
+      <div className="run-row subtle">
+        <span>Skills</span>
+        <strong>{skills}</strong>
+      </div>
+      <div className="run-row subtle">
+        <span>Tools</span>
+        <strong>{tools}</strong>
+      </div>
+      <div className="run-row subtle">
+        <span>Pending</span>
+        <strong>{pending} permission{pending === 1 ? "" : "s"}</strong>
+      </div>
     </aside>
   );
 }
