@@ -20,12 +20,16 @@ mode for connected repositories.
 ## Repo Structure
 
 ```text
+CLAUDE.md              Global Claude Code project context
+.claude/              Agent settings, hooks, and reusable skills
 apps/web/              React web UI for localhost product iteration
 apps/desktop/          Tauri desktop shell scaffold
 apps/runtime-python/   Python runtime stub for local tool execution
 packages/protocol/     Shared TypeScript protocol/types
 scripts/               Local developer helpers
-docs/                  Architecture and collaboration notes
+docs/                  Architecture, decisions, and runbooks
+tools/                 Agent prompts and deterministic helper scripts
+src/                   Future core modules with local instructions
 ```
 
 ## Local Setup
