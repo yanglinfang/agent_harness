@@ -11,14 +11,14 @@ across all modes.
 | Task | Owner | Reviewer | Status |
 | --- | --- | --- | --- |
 | `TASK-000-import-nova-adrs.md` | Local Codex coding agent | Scheduler + Lin | Done |
-| `TASK-001-web-shell-routing.md` | Claude Code | Codex VS Code | Ready |
+| `TASK-001-web-shell-routing.md` | Claude Code | Codex VS Code | In progress |
 | `TASK-002-runtime-api-contract.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-003-trace-event-store.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-004-permission-engine-stub.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-005-coding-mode-repo-card.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-006-inspector-tabs.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-007-designer-ui-iteration.md` | Claude Design | Scheduler | Ready |
-| `TASK-008-review-and-checkin.md` | Codex VS Code | Scheduler | Ready |
+| `TASK-008-review-and-checkin.md` | Codex VS Code | Scheduler | Armed for TASK-001 |
 
 ## Recommended Order
 
