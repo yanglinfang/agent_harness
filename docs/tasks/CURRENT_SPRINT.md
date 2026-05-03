@@ -10,6 +10,7 @@ across all modes.
 
 | Task | Owner | Reviewer | Status |
 | --- | --- | --- | --- |
+| `TASK-000-import-nova-adrs.md` | Local Codex coding agent | Scheduler + Lin | Waiting on Nova ADR output |
 | `TASK-001-web-shell-routing.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-002-runtime-api-contract.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-003-trace-event-store.md` | Claude Code | Codex VS Code | Ready |
@@ -21,18 +22,22 @@ across all modes.
 
 ## Recommended Order
 
-1. `TASK-001-web-shell-routing.md`
-2. `TASK-002-runtime-api-contract.md`
-3. `TASK-003-trace-event-store.md`
-4. `TASK-004-permission-engine-stub.md`
-5. `TASK-006-inspector-tabs.md`
-6. `TASK-005-coding-mode-repo-card.md`
-7. `TASK-007-designer-ui-iteration.md`
-8. `TASK-008-review-and-checkin.md`
+1. `TASK-000-import-nova-adrs.md`
+2. `TASK-001-web-shell-routing.md`
+3. `TASK-002-runtime-api-contract.md`
+4. `TASK-003-trace-event-store.md`
+5. `TASK-004-permission-engine-stub.md`
+6. `TASK-006-inspector-tabs.md`
+7. `TASK-005-coding-mode-repo-card.md`
+8. `TASK-007-designer-ui-iteration.md`
+9. `TASK-008-review-and-checkin.md`
 
 ## Scheduler Notes
 
 - Keep the web UI running at `http://127.0.0.1:5173/` during testing.
-- Ask Claude Code for small patches, not broad rewrites.
-- Ask Codex VS Code to review each patch before commit.
+- Ask local Claude Code for small implementation patches, not broad rewrites.
+- Ask local Codex coding agent to implement when assigned, review patches, run
+  checks, and commit.
 - Use Designer only for interaction/layout decisions, not code ownership.
+- Treat Nova and GPT Linx as plan/spec/design agents. They do not see the local
+  repo unless the scheduler pastes context.

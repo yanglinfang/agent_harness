@@ -3,12 +3,14 @@
 Target operating model:
 
 1. Codex app scheduler selects a task from `docs/tasks/CURRENT_SPRINT.md`.
-2. Claude Code writes focused implementation changes in VS Code.
-3. Codex in VS Code reviews diffs, runs checks, and performs git commits.
-4. Claude Code starts local instances and opens the Web UI.
-5. Codex app scheduler performs user testing from the Web UI and sends feedback.
-6. Claude Design iterates UX when the scheduler files a design task.
-7. Repeat until localhost has a running product flow.
+2. Nova and GPT Linx handle planning, detailed design, specs, and ADR drafts.
+3. Claude Designer handles product design and interaction iteration.
+4. Local Claude Code writes focused implementation changes in VS Code.
+5. Local Codex coding agent writes assigned code, reviews diffs, runs checks,
+   performs commits, and keeps git clean.
+6. Codex app scheduler performs localhost user testing and sends feedback.
+7. Lin arbitrates any disagreement across agents.
+8. Repeat until localhost has a running product flow.
 
 Rules:
 
@@ -18,3 +20,5 @@ Rules:
   trace, and model route.
 - The scheduler should avoid feature implementation. Its job is task breakdown,
   handoff, localhost user testing, feedback, and coordination.
+- The scheduler can see every window; browser planning agents can only see their
+  own conversation unless the scheduler pastes context.

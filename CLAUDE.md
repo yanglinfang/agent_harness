@@ -15,11 +15,22 @@ for connected repositories.
 - `apps/desktop`: Tauri desktop shell scaffold.
 - `apps/runtime-python`: local Python runtime stub for tool execution.
 - `packages/protocol`: shared TypeScript protocol and event contracts.
-- `docs`: architecture notes, decisions, and runbooks.
+- `docs`: architecture notes, ADRs, task cards, coordination, and runbooks.
 - `.claude/skills`: reusable Claude Code workflows.
 - `.claude/hooks`: local automation hooks and policy notes.
 - `tools`: scripts and prompts used by agents and maintainers.
 - `src`: future core application modules with local instructions.
+
+## Multi-Agent Roles
+
+- Lin: project owner and final arbiter.
+- Codex app: global scheduler and cross-window coordinator.
+- Nova / Claude web chat: planning, detailed specification, and ADR drafting.
+- GPT Linx web chat: planning and detailed design/spec review.
+- Claude Designer web chat: interaction and visual design.
+- Local Claude Code in VS Code: implementation.
+- Local Codex coding agent in VS Code: implementation, review, checks, commits,
+  and git hygiene.
 
 ## Best Practices
 
