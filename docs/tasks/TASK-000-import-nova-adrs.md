@@ -59,3 +59,10 @@ Report:
 - Commit hash.
 - Which Nova source messages/artifacts were used.
 - Any wording that needs Lin arbitration.
+
+## Completion Note
+
+- Imported Nova's downloaded `files.zip` artifact bundle from the Nova / Claude
+  web chat.
+- Added ADR template `0000-template.md` plus ADR 0001-0005 under `docs/adr/`.
+- No wording changes were made to Nova's ADR bodies.

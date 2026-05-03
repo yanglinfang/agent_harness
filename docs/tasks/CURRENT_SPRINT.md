@@ -10,7 +10,7 @@ across all modes.
 
 | Task | Owner | Reviewer | Status |
 | --- | --- | --- | --- |
-| `TASK-000-import-nova-adrs.md` | Local Codex coding agent | Scheduler + Lin | Waiting on Nova ADR output |
+| `TASK-000-import-nova-adrs.md` | Local Codex coding agent | Scheduler + Lin | Done |
 | `TASK-001-web-shell-routing.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-002-runtime-api-contract.md` | Claude Code | Codex VS Code | Ready |
 | `TASK-003-trace-event-store.md` | Claude Code | Codex VS Code | Ready |
