@@ -1,0 +1,18 @@
+{
+  "name": "agent-harness",
+  "version": "0.1.0",
+  "private": true,
+  "description": "General-purpose local/cloud hybrid agent workspace.",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @agent-harness/web dev",
+    "build": "pnpm --filter @agent-harness/protocol build && pnpm --filter @agent-harness/web build",
+    "typecheck": "pnpm --filter @agent-harness/protocol typecheck && pnpm --filter @agent-harness/web typecheck",
+    "env:sync": "node scripts/sync-env.mjs",
+    "runtime:python": "python3 apps/runtime-python/agent_harness_runtime/server.py"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "project": "agent-harness",
+  "defaultBranch": "main",
+  "primarySurface": "apps/web",
+  "checks": {
+    "typecheck": "pnpm typecheck",
+    "build": "pnpm build",
+    "web": "pnpm dev",
+    "runtime": "pnpm runtime:python"
+  },
+  "guardrails": {
+    "neverCommitSecrets": true,
+    "keepGeneralAgentFirst": true,
+    "codingIsOneMode": true,
+    "requireTrustSurfaceForTooling": true
+  }
+}
