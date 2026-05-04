@@ -1,9 +1,12 @@
 .DS_Store
+Thumbs.db
 node_modules/
 dist/
 build/
+coverage/
 .turbo/
 .vite/
+*.tsbuildinfo
 
 .env
 .env.local
@@ -11,11 +14,20 @@ build/
 !.env.example
 
 __pycache__/
+*.py[cod]
+*.egg-info/
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .venv/
 venv/
 
 target/
 src-tauri/target/
 
+.claude/settings.local.json
+.idea/
+
 *.log
+pnpm-debug.log*
+npm-debug.log*
