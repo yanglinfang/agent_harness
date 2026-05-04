@@ -1,0 +1,160 @@
+{
+  "runs": [
+    {
+      "run_id": "run_8b3f2a",
+      "title": "General Agent Workspace",
+      "intent": "Customer research synthesis",
+      "status": "running",
+      "mode": "general",
+      "model": "auto: cloud reasoning + local retrieval",
+      "updated_at": "2026-05-03T10:43:14-07:00",
+      "capabilities": [
+        { "id": "memory", "kind": "memory", "label": "Memory", "status": "active", "summary": "personal, project, session" },
+        { "id": "tools", "kind": "tool", "label": "Tools", "status": "active", "summary": "8 governed tools" },
+        { "id": "mcp", "kind": "mcp", "label": "MCP", "status": "active", "summary": "5 connected servers" },
+        { "id": "skills", "kind": "skill", "label": "Skills", "status": "active", "summary": "4 active skills" },
+        { "id": "permissions", "kind": "permission", "label": "Permissions", "status": "active", "summary": "strict default-deny policy" },
+        { "id": "trace", "kind": "trace", "label": "Trace", "status": "active", "summary": "42 sealed events" }
+      ],
+      "workspace": [
+        { "id": "files", "kind": "files", "label": "Files", "status": "connected", "summary": "14 pinned files" },
+        { "id": "docs", "kind": "docs", "label": "Docs", "status": "connected", "summary": "Notion and Google Docs" },
+        { "id": "repos", "kind": "repos", "label": "Repos", "status": "needs-review", "summary": "2 available, coding mode optional" },
+        { "id": "browser", "kind": "browser", "label": "Browser", "status": "connected", "summary": "3 active tabs" },
+        { "id": "apps", "kind": "apps", "label": "Apps", "status": "connected", "summary": "Calendar, mail, Slack, GitHub" }
+      ],
+      "messages": [
+        {
+          "id": "msg_1",
+          "role": "user",
+          "at": "10:42",
+          "text": "Pull the last 3 months of customer research interviews, find recurring onboarding complaints, and write a 1-page engineering brief with direct quotes."
+        },
+        {
+          "id": "msg_2",
+          "role": "agent",
+          "at": "10:43",
+          "text": "Plan generated. Retrieval and clustering stay local; synthesis can route to cloud reasoning. No writes outside the session workspace without approval.",
+          "steps": [
+            "Index connected docs through MCP.",
+            "Read interview notes from workspace files.",
+            "Cluster recurring complaints with a skill.",
+            "Draft the brief and request permission before sharing."
+          ]
+        }
+      ],
+      "activity": [
+        { "id": "ev_101", "at": "10:43:14", "kind": "tool", "label": "mcp.notion.search", "detail": "customer research H1 -> 12 results", "state": "ok" },
+        { "id": "ev_102", "at": "10:43:11", "kind": "tool", "label": "fs.read", "detail": "interview-notes/2026-04-22-acme.md", "state": "ok" },
+        { "id": "ev_103", "at": "10:43:08", "kind": "permission", "label": "auto-approve", "detail": "fs.read within whitelisted workspace", "state": "ok" },
+        { "id": "ev_104", "at": "10:43:05", "kind": "memory", "label": "memory.project", "detail": "wrote complaint-themes draft", "state": "waiting" },
+        { "id": "ev_105", "at": "10:42:58", "kind": "model", "label": "model route", "detail": "cloud reasoning, local embedding retrieval", "state": "running" },
+        { "id": "ev_106", "at": "10:42:52", "kind": "permission", "label": "approval-required", "detail": "net.fetch external domain", "state": "waiting" }
+      ],
+      "inspector": {
+        "policy": "strict",
+        "memory": "personal · project · session",
+        "mcp": "5 connected servers",
+        "skills": "4 active skills",
+        "tools": "8 governed tools"
+      }
+    },
+    {
+      "run_id": "run_2c91d4",
+      "title": "Onboarding complaints clustering",
+      "intent": "Group quotes into themes for the brief",
+      "status": "ready",
+      "mode": "research",
+      "model": "auto: local retrieval + cloud reasoning",
+      "updated_at": "2026-05-03T09:18:02-07:00",
+      "capabilities": [
+        { "id": "memory", "kind": "memory", "label": "Memory", "status": "active", "summary": "personal, project, session" },
+        { "id": "tools", "kind": "tool", "label": "Tools", "status": "active", "summary": "5 governed tools" },
+        { "id": "mcp", "kind": "mcp", "label": "MCP", "status": "active", "summary": "3 connected servers" },
+        { "id": "skills", "kind": "skill", "label": "Skills", "status": "active", "summary": "2 active skills" },
+        { "id": "permissions", "kind": "permission", "label": "Permissions", "status": "active", "summary": "strict default-deny policy" },
+        { "id": "trace", "kind": "trace", "label": "Trace", "status": "active", "summary": "18 sealed events" }
+      ],
+      "workspace": [
+        { "id": "files", "kind": "files", "label": "Files", "status": "connected", "summary": "interview transcripts folder" },
+        { "id": "docs", "kind": "docs", "label": "Docs", "status": "connected", "summary": "Notion research workspace" },
+        { "id": "browser", "kind": "browser", "label": "Browser", "status": "disconnected", "summary": "Not connected" },
+        { "id": "apps", "kind": "apps", "label": "Apps", "status": "connected", "summary": "Linear, GitHub" }
+      ],
+      "messages": [
+        {
+          "id": "msg_r1",
+          "role": "user",
+          "at": "09:14",
+          "text": "Cluster the onboarding complaints by theme and rank them by frequency."
+        },
+        {
+          "id": "msg_r2",
+          "role": "agent",
+          "at": "09:18",
+          "text": "Clustered 47 quotes into 6 themes. Top theme is 'first-run setup friction' (12 quotes). Ready to draft the brief on your signal."
+        }
+      ],
+      "activity": [
+        { "id": "ev_r01", "at": "09:18:02", "kind": "tool", "label": "skill.cluster", "detail": "47 quotes -> 6 themes", "state": "ok" },
+        { "id": "ev_r02", "at": "09:17:41", "kind": "tool", "label": "fs.read", "detail": "interview-notes/*", "state": "ok" },
+        { "id": "ev_r03", "at": "09:17:30", "kind": "model", "label": "model route", "detail": "local embedding retrieval", "state": "ok" }
+      ],
+      "inspector": {
+        "policy": "strict",
+        "memory": "personal · project · session",
+        "mcp": "3 connected servers",
+        "skills": "2 active skills",
+        "tools": "5 governed tools"
+      }
+    },
+    {
+      "run_id": "run_4f7a10",
+      "title": "Repo onboarding diff",
+      "intent": "Optional coding mode: review proposed onboarding fix",
+      "status": "blocked",
+      "mode": "coding",
+      "model": "auto: cloud reasoning",
+      "updated_at": "2026-05-02T17:02:48-07:00",
+      "capabilities": [
+        { "id": "memory", "kind": "memory", "label": "Memory", "status": "active", "summary": "project only" },
+        { "id": "tools", "kind": "tool", "label": "Tools", "status": "active", "summary": "3 governed tools" },
+        { "id": "mcp", "kind": "mcp", "label": "MCP", "status": "available", "summary": "1 connected server" },
+        { "id": "skills", "kind": "skill", "label": "Skills", "status": "active", "summary": "1 active skill" },
+        { "id": "permissions", "kind": "permission", "label": "Permissions", "status": "active", "summary": "review-gated apply" },
+        { "id": "trace", "kind": "trace", "label": "Trace", "status": "active", "summary": "9 sealed events" }
+      ],
+      "workspace": [
+        { "id": "repos", "kind": "repos", "label": "Repos", "status": "connected", "summary": "agent_harness repo connected" },
+        { "id": "files", "kind": "files", "label": "Files", "status": "connected", "summary": "repo files visible" },
+        { "id": "apps", "kind": "apps", "label": "Apps", "status": "connected", "summary": "GitHub" }
+      ],
+      "messages": [
+        {
+          "id": "msg_c1",
+          "role": "user",
+          "at": "16:55",
+          "text": "Propose a fix for the onboarding redirect bug noted in the brief."
+        },
+        {
+          "id": "msg_c2",
+          "role": "agent",
+          "at": "17:02",
+          "text": "Diff prepared in shadow workspace. Review-gated apply is on; waiting for approval before touching the working tree."
+        }
+      ],
+      "activity": [
+        { "id": "ev_c01", "at": "17:02:48", "kind": "permission", "label": "approval-required", "detail": "fs.write inside repo", "state": "waiting" },
+        { "id": "ev_c02", "at": "17:01:12", "kind": "tool", "label": "fs.read", "detail": "src/onboarding/redirect.ts", "state": "ok" },
+        { "id": "ev_c03", "at": "16:59:40", "kind": "model", "label": "model route", "detail": "cloud reasoning", "state": "ok" }
+      ],
+      "inspector": {
+        "policy": "strict",
+        "memory": "project only",
+        "mcp": "1 connected server",
+        "skills": "1 active skill",
+        "tools": "3 governed tools"
+      }
+    }
+  ]
+}

@@ -1,3 +1,6 @@
+// Dev / reference fixture only. Production rendering reads runs from the
+// runtime via apps/web/src/api. Keep this in sync with the legacy AgentRun
+// shape if you want to rehydrate the old static layout for offline tinkering.
 import type { AgentRun } from "@agent-harness/protocol";
 
 export const activeRun: AgentRun = {

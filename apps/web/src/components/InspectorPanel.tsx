@@ -1,59 +1,56 @@
-import type { AgentRun } from "@agent-harness/protocol";
+import type { RunInspectorView, TraceEvent } from "@agent-harness/protocol";
 import type { ModeOption } from "./ModeSwitcher";
 
 interface InspectorPanelProps {
-  run: AgentRun;
+  inspector: RunInspectorView | null;
   mode: ModeOption;
+  model: string;
+  activity: TraceEvent[];
 }
 
-function summaryFor(run: AgentRun, kind: string) {
-  return run.capabilities.find((capability) => capability.kind === kind)?.summary;
-}
-
-export function InspectorPanel({ run, mode }: InspectorPanelProps) {
-  const mcp = summaryFor(run, "mcp") ?? "—";
-  const skills = summaryFor(run, "skill") ?? "—";
-  const tools = summaryFor(run, "tool") ?? "—";
-  const pending = run.trace.filter((event) => event.state === "waiting").length;
+export function InspectorPanel({ inspector, mode, model, activity }: InspectorPanelProps) {
+  const pending = activity.filter((event) => event.state === "waiting").length;
 
   return (
     <aside className="inspector">
       <header className="run-context-header">Run context</header>
 
-      <div className="run-row">
+      <div className="inspector-row">
         <span>Mode</span>
         <strong>{mode}</strong>
       </div>
-      <div className="run-row">
+      <div className="inspector-row">
         <span>Policy</span>
-        <strong>{run.policy}</strong>
+        <strong>{inspector?.policy ?? "—"}</strong>
       </div>
-      <div className="run-row">
+      <div className="inspector-row">
         <span>Route</span>
-        <strong>{run.modelRoute}</strong>
+        <strong>{model || "—"}</strong>
       </div>
-      <div className="run-row">
+      <div className="inspector-row">
         <span>Memory</span>
-        <strong>personal · project · session</strong>
+        <strong>{inspector?.memory ?? "—"}</strong>
       </div>
 
       <hr className="run-divider" />
 
-      <div className="run-row subtle">
+      <div className="inspector-row subtle">
         <span>MCP</span>
-        <strong>{mcp}</strong>
+        <strong>{inspector?.mcp ?? "—"}</strong>
       </div>
-      <div className="run-row subtle">
+      <div className="inspector-row subtle">
         <span>Skills</span>
-        <strong>{skills}</strong>
+        <strong>{inspector?.skills ?? "—"}</strong>
       </div>
-      <div className="run-row subtle">
+      <div className="inspector-row subtle">
         <span>Tools</span>
-        <strong>{tools}</strong>
+        <strong>{inspector?.tools ?? "—"}</strong>
       </div>
-      <div className="run-row subtle">
+      <div className="inspector-row subtle">
         <span>Pending</span>
-        <strong>{pending} permission{pending === 1 ? "" : "s"}</strong>
+        <strong>
+          {pending} permission{pending === 1 ? "" : "s"}
+        </strong>
       </div>
     </aside>
   );

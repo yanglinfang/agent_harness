@@ -47,3 +47,50 @@ export interface AgentRun {
   capabilities: Capability[];
   trace: TraceEvent[];
 }
+
+export type RunStatus = "running" | "ready" | "blocked" | "complete";
+
+export interface RunSummary {
+  run_id: string;
+  title: string;
+  intent: string;
+  status: RunStatus;
+  mode: AgentMode;
+  updated_at: string;
+}
+
+export interface RunMessage {
+  id: string;
+  role: "user" | "agent";
+  at: string;
+  text: string;
+  steps?: string[];
+}
+
+export interface RunInspectorView {
+  policy: "strict" | "balanced" | "open";
+  memory: string;
+  mcp: string;
+  skills: string;
+  tools: string;
+}
+
+export interface RunDetail extends RunSummary {
+  model: string;
+  capabilities: Capability[];
+  workspace: WorkspaceSource[];
+  messages: RunMessage[];
+  activity: TraceEvent[];
+  inspector: RunInspectorView;
+}
+
+export interface RunListResponse {
+  runs: RunSummary[];
+}
+
+export interface ApiError {
+  error: string;
+  run_id?: string;
+  path?: string;
+  detail?: string;
+}
